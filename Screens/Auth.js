@@ -2,14 +2,22 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Image, ImageBackground } from 'react-native';
 import { Form, Item, Input, Body, Text, CheckBox, Button } from 'native-base';
 import logo from './Images/head.png'
+import {Actions} from 'react-native-router-flux';
+
 
 
 
 import image from './Images/1.png'
+const switchToForm = () => {
+    Actions.replace('formo')
+  };
 export default class Auth extends Component {
+    
     render() {
+    
+       
         return (
-            <View style={styles.container}>
+            <View style={styles.container} >
                 <Image source={image} style={styles.image}></Image>
                 <View style={styles.top}>
 
@@ -39,7 +47,7 @@ export default class Auth extends Component {
                                 </Body>
                             </View>
                             <View style={styles.Button}>
-                                <Button block style={styles.mainBtn}>
+                                <Button block style={styles.mainBtn} onPress={switchToForm}>
                                     <Text style={styles.btnText}>Sign In</Text>  
                                 </Button>
                             </View>
@@ -57,6 +65,8 @@ export default class Auth extends Component {
         );
     }
 }
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -7,6 +7,7 @@ import {Router,Scene} from 'react-native-router-flux'
 
 import Splash from './Screens/Splash'
 import Auth from './Screens/Auth'
+import form from './Screens/form'
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Scene key="root">
         <Scene key="splash" component={Splash} initial={true} hideNavBar={true}></Scene>
         <Scene key="autho" component={Auth} hideNavBar={true}  ></Scene>
+        <Scene key="formo" component={form} hideNavBar={true}  ></Scene>
         
       </Scene>
 
