@@ -5,12 +5,15 @@ import { Form, Item, Input, Body, Text, CheckBox, Button } from 'native-base';
 
 import DatePicker from 'react-native-datepicker'
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 
 
 var radio_props = [
   { label: 'Yes', value: 1 },
   { label: 'No', value: 0 }
 ];
+
 
 
 
@@ -102,41 +105,206 @@ const LotsOfStyles = () => {
         <Text style={styles.textContainer}>SAMPLING EVENT</Text>
         <Form style={styles.mainForm}>
 
-          <View style={styles.loginAs}>
+          <View style={styles.loginAs,(Platform.OS !== 'android' && {
+            zIndex: 5000, paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 15,
+            marginBottom: 20,
+            justifyContent: 'space-evenly',
+        })}  >
             <Text style={styles.Fields}>Gear Type:  </Text>
-            <TextInput placeholder="Site Name" style={styles.dateI} />
-            
+            <DropDownPicker 
+              items={[
+                { label: 'Select Gear type', value: 'Select Gear type' },
+                { label: 'D-net', value: 'D-net' },
+                { label: 'Ponar Grab', value: 'Ponar Grab' },
+                { label: 'Ekman Dredge', value: 'Ekman Dredge' },
+                { label: 'Unknown/Other', value: 'Unknown/Other' },
+                
+                
+              ]}
+              defaultValue={'Select Gear type'}
+              containerStyle={{
+                height: 40,
+              }}
+              style={{ backgroundColor: 'white', width: 200, marginRight: 20, borderColor: 'black' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+               
+              }}
+              selectedtLabelStyle={{
+                color: '#39739d'
+            }}
+              activeLabelStyle={{color: '#1C3962',}}
+              dropDownStyle={{ backgroundColor:"white"}}
+
+            />
+
           </View>
-          <View style={styles.loginAs}>
+          <View style={styles.loginAs,(Platform.OS !== 'android' && {
+            zIndex: 4000, paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 15,
+            marginBottom: 20,
+            justifyContent: 'space-evenly',
+        })}>
             <Text style={styles.Fields}>Collection Method:  </Text>
-            <TextInput placeholder="Site Name" style={styles.dateI} />
+            <DropDownPicker 
+              items={[
+                { label: 'Select Collection Method', value: 'Select Collection Method' },
+                { label: 'OBBN Kick & Sweep', value: 'OBBN Kick & Sweep' },
+                { label: 'CABIN Kick & Sweep', value: 'CABIN Kick & Sweep' },
+                { label: 'Grab', value: 'Grab' },
+                { label: 'Other', value: 'Other' },
+                
+                
+              ]}
+              defaultValue={'Select Collection Method'}
+              containerStyle={{
+                height: 40,
+              }}
+              style={{ backgroundColor: 'white', width: 200, marginRight: 20, borderColor: 'black' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+               
+              }}
+              selectedtLabelStyle={{
+                color: '#39739d'
+            }}
+              activeLabelStyle={{color: '#1C3962',}}
+              dropDownStyle={{ backgroundColor:"white"}}
+
+            />
           </View>
-          <View style={styles.loginAs}>
+          <View style={styles.loginAs,(Platform.OS !== 'android' && {
+            zIndex: 3000, paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 15,
+            marginBottom: 20,
+            justifyContent: 'space-evenly',
+        })}>
             <Text style={styles.Fields}>Mesh Size:    </Text>
-            <TextInput placeholder="Agency" style={styles.dateI} />
+            <DropDownPicker 
+              items={[
+                { label: 'Select Mesh Size', value: 'Select Mesh Size' },
+                { label: '500 micron', value: '500 micron' },
+                { label: '400 micron', value: '400 micron' },
+                { label: 'N/A', value: 'N/A' },
+                
+                
+                
+              ]}
+              defaultValue={'Select Mesh Size'}
+              containerStyle={{
+                height: 40,
+              }}
+              style={{ backgroundColor: 'white', width: 200, marginRight: 20, borderColor: 'black' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+               
+              }}
+              selectedtLabelStyle={{
+                color: '#39739d'
+            }}
+              activeLabelStyle={{color: '#1C3962',}}
+              dropDownStyle={{ backgroundColor:"white"}}
+
+            />
           </View>
-          <View style={styles.loginAs}>
+          <View style={styles.loginAs,(Platform.OS !== 'android' && {
+            zIndex: 2000, paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 15,
+            marginBottom: 20,
+            justifyContent: 'space-evenly',
+        })}>
             <Text style={styles.Fields}>River Permanence:</Text>
-            <TextInput placeholder="Coordinates" style={styles.dateI} />
-            
+            <DropDownPicker 
+              items={[
+                { label: 'Select River Permanence', value: 'Select River Permanence' },
+                { label: 'Intermittent', value: 'Intermittent' },
+                { label: 'Perennial', value: 'Perennial' },
+                { label: 'Pumped Drain', value: 'Pumped Drain' },
+                { label: 'Unknown', value: 'Unknown' },
+                
+                
+              ]}
+              defaultValue={'Select River Permanence'}
+              containerStyle={{
+                height: 40,
+              }}
+              style={{ backgroundColor: 'white', width: 200, marginRight: 20, borderColor: 'black' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+               
+              }}
+              selectedtLabelStyle={{
+                color: '#39739d'
+            }}
+              activeLabelStyle={{color: '#1C3962',}}
+              dropDownStyle={{ backgroundColor:"white"}}
+
+            />
+
           </View>
           <View style={styles.loginAs}>
-            <Text style={styles.Fields}>Bank Full Width:</Text>
-            <TextInput placeholder="Coordinates" style={styles.dateI} />
+            <Text style={styles.Fields}>Bank Full Width(m):</Text>
+            <TextInput placeholder="Bank Full Width" style={styles.dateI} />
           </View>
-          <View style={styles.loginAs}>
+          <View style={styles.loginAs,(Platform.OS !== 'android' && {
+            zIndex: 1000, paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 15,
+            marginBottom: 20,
+            justifyContent: 'space-evenly',
+        })}>
             <Text style={styles.Fields}>% Canopy Cover:</Text>
-            <TextInput placeholder="Coordinates" style={styles.dateI} />
+            <DropDownPicker 
+              items={[
+                { label: 'Select Canopy Cover', value: 'Select Canopy Cover' },
+                { label: '0-25', value: '0-25' },
+                { label: '26-50', value: '26-50' },
+                { label: '51-75', value: '51-75' },
+                { label: '76-100', value: '76-100' },
+                
+                
+              ]}
+              defaultValue={'Select Canopy Cover'}
+              containerStyle={{
+                height: 40,
+              }}
+              style={{ backgroundColor: 'white', width: 200, marginRight: 20, borderColor: 'black' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+               
+              }}
+              selectedtLabelStyle={{
+                color: '#39739d'
+            }}
+              activeLabelStyle={{color: '#1C3962',}}
+              dropDownStyle={{ backgroundColor:"white"}}
+
+            />
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Time Of Day:</Text>
-            <TextInput placeholder="Coordinates" style={styles.dateI} />
+            <TextInput placeholder="Enter Time" style={styles.dateI} />
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Event Comment:</Text>
-            <TextInput placeholder="Coordinates" style={styles.dateI} />
+            <TextInput placeholder="Enter Comment" style={styles.dateI} />
           </View>
         </Form>
+        <View style={styles.Button}>
+                                <Button block style={styles.mainBtn}>
+                                    <Text style={styles.btnText}>Next</Text>  
+                                </Button>
+                            </View>
       </View>
 
     </ScrollView >
@@ -186,7 +354,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 15,
     marginBottom: 20,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    
+
   },
   Input: {
     fontFamily: 'Arial',
@@ -200,13 +370,26 @@ const styles = StyleSheet.create({
 
 
   },
+  Button: {
+    padding: 30.8,
+    borderRadius: 4,
+},
+mainBtn: {
+    backgroundColor: '#4A934D',
+},
+btnText: {
+    color: '#ffffff',
+    fontFamily: 'Arial',
+    fontSize: 20,
+    fontWeight: 'bold'
+},
   textContainer: {
     color: '#1C3962',
     fontFamily: 'Arial',
     fontSize: 24,
     marginBottom: 30,
     position: 'relative',
-    top: '0%',
+    paddingTop:15,
     alignSelf: 'center',
   },
   loginText: {
