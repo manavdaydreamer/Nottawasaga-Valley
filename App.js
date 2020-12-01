@@ -2,27 +2,95 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 
 import { StyleSheet, Text, View } from 'react-native';
-import {Router,Scene} from 'react-native-router-flux'
+import { Router, Scene } from 'react-native-router-flux'
+import * as firebase from 'firebase';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD61p7zqLeyH1fzoDdnJPyLJYO0f5C6IRs",
+  authDomain: "react-11b30.firebaseapp.com",
+  databaseURL: "https://react-11b30.firebaseio.com",
+  projectId: "react-11b30",
+  storageBucket: "react-11b30.appspot.com",
+}
+
 
 
 import Splash from './Screens/Splash'
 import Auth from './Screens/Auth'
 import form from './Screens/form'
+import form2 from './Screens/form2'
+import form3 from './Screens/CollectionArea'
+import form4 from './Screens/CollectionArea2'
+import form5 from './Screens/CollectionArea3'
+import form6 from './Screens/macro'
+import signUp from './Screens/SignUp'
+import { Component } from 'react/cjs/react.production.min';
 
 
-export default function App() {
-  
+
+
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{ color: selected ? 'red' : 'black' }}>{title}</Text>
+  );
+}
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoadingComplete: false,
+      isAuthenticationReady: false,
+      isAuthenticated: false,
+    };
+
+    // Initialize firebase...
+    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+  }
+
+  onAuthStateChanged = (user) => {
+    this.setState({isAuthenticationReady: true});
+    this.setState({isAuthenticated: !!user});
+  }
+
+  render() {
   return (
     <Router>
       <Scene key="root">
         <Scene key="splash" component={Splash} initial={true} hideNavBar={true}></Scene>
         <Scene key="autho" component={Auth} hideNavBar={true}  ></Scene>
         <Scene key="formo" component={form} hideNavBar={true}  ></Scene>
-        
+        <Scene key="formo2" component={form2} hideNavBar={true}></Scene>
+        <Scene key="SignUp" component={signUp} hideNavBar={true}></Scene>
+        <Scene
+          key="tabbar"
+          tabs={true}
+          tabBarStyle={{ backgroundColor: '#FFFFFF' }}
+        >
+          <Scene key="SAMPLE#1" title="SAMPLE#1" icon={TabIcon}>
+            <Scene key="formo3" component={form3} hideNavBar={true} />
+
+
+          </Scene>
+          <Scene key="SAMPLE#2" title="SAMPLE#2" icon={TabIcon}>
+            <Scene key="formo4" component={form4} hideNavBar={true} />
+
+
+          </Scene>
+          <Scene key="SAMPLE#3" title="SAMPLE#3" icon={TabIcon}>
+            <Scene key="formo5" component={form5} hideNavBar={true} />
+          </Scene>
+        </Scene>
+
+        <Scene key="formo6" component={form6} hideNavBar={true}></Scene>
+
+
       </Scene>
 
     </Router>
   );
+}
 }
 
 

@@ -1,49 +1,40 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { Component,useState,useEffect } from 'react'
 import { View, StyleSheet, Image, ImageBackground } from 'react-native';
 import { Form, Item, Input, Body, Text, CheckBox, Button } from 'native-base';
 import logo from './Images/head.png'
-import { Actions } from 'react-native-router-flux';
-import * as firebase from 'firebase';
+import {Actions} from 'react-native-router-flux'; 
 
 
 
 
 
 import image from './Images/1.png'
-
-//  const switchToForm = () => {
-//     Actions.replace('formo')
-//     // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-//     //     .then(() => { Actions.replace('formo')}, (error) => { Alert.alert(error.message); });
-
-// };
-
-
-
-
-export default class Auth extends Component {
+const switchToForm = () => {
+    Actions.replace('formo')
+  };
+// const [state , setState]=React.useState({
+    
+// })
+export default class SignUp extends Component {
     constructor() {
         super();
         this.state = {
-            email: "",
-            password: "",
+          site_code: "",
+          site_name: "",
+          agency: "",
+          coordinates: "",
+          samplingDate: "",
+          gear: "selectgear",
+          CollectionM: "SelectCollectionMethod",
+          mesh: "SelectMeshSize"
+    
         }
-
-    };
-    switchToForm = () => {
-        // Actions.replace('formo')
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => { Actions.replace('formo')}, (error) => { alert(error.message); });
-
-    };
-    switchToSignUp = () => {
-        Actions.replace('SignUp')
-       
-    };
-
+      };
+    
     render() {
-
-
+        
+    
+       
         return (
             <View style={styles.container} >
                 <Image source={image} style={styles.image}></Image>
@@ -54,18 +45,13 @@ export default class Auth extends Component {
                 <View style={styles.middle}>
 
                     <View style={styles.formArea}>
-                        <Text style={[styles.textContainer, styles.signin]}>Sign in</Text>
+                        <Text style={[styles.textContainer, styles.signin]}>Sign Up</Text>
                         <Form style={styles.mainForm}>
                             <Item style={styles.formItems}>
-                                <Input placeholder="Email" style={styles.Input}
-                                    value={this.state.email}
-                                    onChangeText={text => this.setState({ email: text })} />
+                                <Input placeholder="Username" style={styles.Input} />
                             </Item>
                             <Item style={styles.formItems}>
-                                <Input secureTextEntry placeholder="Password" style={styles.Input}
-                                    value={this.state.password}
-                                    onChangeText={text => this.setState({ password: text })}
-                                />
+                                <Input secureTextEntry placeholder="Password" style={styles.Input} />
                             </Item>
 
                             {/* <View style={styles.loginAs}>
@@ -80,13 +66,13 @@ export default class Auth extends Component {
                                 </Body>
                             </View> */}
                             <View style={styles.Button}>
-                                <Button block style={styles.mainBtn} onPress={this.switchToForm}>
-                                    <Text style={styles.btnText}>Sign In</Text>
+                                <Button block style={styles.mainBtn} onPress={switchToForm}>
+                                    <Text style={styles.btnText}>Sign In</Text>  
                                 </Button>
                             </View>
                             <View style={styles.formI}>
                                 <Text style={styles.forgotPass}>Forgot Password ?</Text>
-                                <Text style={styles.signup} onPress={this.switchToSignUp}>SignUp</Text>
+                                <Text style={styles.signup}>SignUp</Text>
                             </View>
                         </Form>
                     </View>
