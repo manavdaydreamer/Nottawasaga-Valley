@@ -18,9 +18,7 @@ var radio2_props = [
     { label: 'Microscope', value: 1 },
     { label: 'Unaided', value: 0 }
   ];
-const switchToForm2 = () => {
-  Actions.replace('formo2')
-};
+
 
 
 
@@ -29,8 +27,12 @@ const CollectionArea = () => {
     <ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
       <Text style={styles.Heading}>Collection Area</Text>
       <View style={styles.App}>
-        <Text style={styles.textContainer}>Sample 1</Text>
+        <Text style={styles.textContainer}>Sample Form</Text>
         <Form style={styles.mainForm}>
+        <View style={styles.loginAs}>
+            <Text style={styles.Fields}>Sample Number:</Text>
+            <TextInput placeholder="Sample Number" style={styles.dateI} />
+          </View>
         <View style={styles.loginAs}>
             <Text style={styles.Fields}>Pool or Riffle:</Text>
             <RadioForm
@@ -50,11 +52,11 @@ const CollectionArea = () => {
 
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Wetted Width (m):</Text>
-            <TextInput placeholder="Wetted Width" style={styles.dateI} />
+            <TextInput placeholder="Wetted Width" style={styles.dateI}  keyboardType="numeric"/>
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Sampling Distance (m):</Text>
-            <TextInput placeholder="Sampling Distance" style={styles.dateI} />
+            <TextInput placeholder="Sampling Distance" style={styles.dateI} keyboardType="numeric" />
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Sampling Time:</Text>
@@ -62,12 +64,12 @@ const CollectionArea = () => {
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Max Depth (cm):</Text>
-            <TextInput placeholder="Max Depth" style={styles.dateI} />
+            <TextInput placeholder="Max Depth" style={styles.dateI} keyboardType="numeric" />
             
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Max Hydraulic Head (mm):</Text>
-            <TextInput placeholder="Max Hydraulic Head" style={styles.dateI} />
+            <TextInput placeholder="Max Hydraulic Head" style={styles.dateI} keyboardType="numeric"/>
           </View>
           <View style={styles.loginAs,(Platform.OS !== 'android' && {
                         zIndex: 2000, paddingLeft: 10,
@@ -206,15 +208,15 @@ const CollectionArea = () => {
           
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Longitude:</Text>
-            <TextInput placeholder="Longitude" style={styles.dateI} />
+            <TextInput placeholder="Longitude" style={styles.dateI} keyboardType="numeric"/>
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Latitude:</Text>
-            <TextInput placeholder="Latitude" style={styles.dateI} />
+            <TextInput placeholder="Latitude" style={styles.dateI} keyboardType="numeric"/>
           </View>
           <View style={styles.loginAs}>
             <Text style={styles.Fields}>Number of Samples Pooled (grabs/area):</Text>
-            <TextInput placeholder="Samples Pooled" style={styles.dateI} />
+            <TextInput placeholder="Samples Pooled" style={styles.dateI} keyboardType="numeric"/>
           </View>
         </Form>
       </View>
@@ -302,7 +304,7 @@ const CollectionArea = () => {
                 <Form style={styles.mainForm}>
 
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 5000, paddingLeft: 10,
+                        zIndex: 9500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -338,7 +340,7 @@ const CollectionArea = () => {
 
                     </View>
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 4000, paddingLeft: 10,
+                        zIndex: 8500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -372,7 +374,7 @@ const CollectionArea = () => {
                         />
                     </View>
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 4000, paddingLeft: 10,
+                        zIndex: 7500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -406,7 +408,7 @@ const CollectionArea = () => {
                         />
                     </View>
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 3000, paddingLeft: 10,
+                        zIndex: 6500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -449,7 +451,7 @@ const CollectionArea = () => {
                 <Form style={styles.mainForm}>
 
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 2000, paddingLeft: 10,
+                        zIndex: 9500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -485,7 +487,7 @@ const CollectionArea = () => {
 
                     </View>
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 4000, paddingLeft: 10,
+                        zIndex: 8500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -519,7 +521,7 @@ const CollectionArea = () => {
                         />
                     </View>
                     <View style={styles.loginAs, (Platform.OS !== 'android' && {
-                        zIndex: 4000, paddingLeft: 10,
+                        zIndex: 7500, paddingLeft: 10,
                         display: 'flex',
                         // flexDirection: 'row',
                         marginTop: 15,
@@ -564,24 +566,24 @@ const CollectionArea = () => {
                     <View style={styles.loginAs}>
                         <Text style={styles.FieldsN}>PC-1:  </Text>
                         <TextInput placeholder="Material" style={styles.Input} />
-                        <TextInput placeholder="Size" style={styles.Input} />
+                        <TextInput placeholder="Size" style={styles.Input} keyboardType="numeric"/>
                         <Text style={styles.FieldsN}>PC-2:  </Text>
                         <TextInput placeholder="Material" style={styles.Input} />
-                        <TextInput placeholder="Size" style={styles.Input} />
+                        <TextInput placeholder="Size" style={styles.Input}keyboardType="numeric" />
                         <Text style={styles.FieldsN}>PC-3:  </Text>
                         <TextInput placeholder="Material" style={styles.Input} />
-                        <TextInput placeholder="Size" style={styles.Input} />
+                        <TextInput placeholder="Size" style={styles.Input} keyboardType="numeric"/>
                         <Text style={styles.FieldsN}>PC-4:  </Text>
                         <TextInput placeholder="Material" style={styles.Input} />
-                        <TextInput placeholder="Size" style={styles.Input} />
+                        <TextInput placeholder="Size" style={styles.Input} keyboardType="numeric"/>
                         <Text style={styles.FieldsN}>PC-5:  </Text>
                         <TextInput placeholder="Material" style={styles.Input} />
-                        <TextInput placeholder="Size" style={styles.Input} />
+                        <TextInput placeholder="Size" style={styles.Input}keyboardType="numeric" />
 
                     </View>
                     <View style={styles.Button}>
                                 <Button block style={styles.mainBtn} >
-                                    <Text style={styles.btnText}>NEXT</Text>  
+                                    <Text style={styles.btnText}>SUBMIT</Text>  
                                 </Button>
                             </View>
                    

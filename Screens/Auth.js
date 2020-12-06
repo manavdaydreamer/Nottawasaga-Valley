@@ -86,7 +86,8 @@ export default class Auth extends Component {
                             </View>
                             <View style={styles.formI}>
                                 <Text style={styles.forgotPass}>Forgot Password ?</Text>
-                                <Text style={styles.signup} onPress={this.switchToSignUp}>SignUp</Text>
+                                <Text style={styles.signup} 
+                                onPress={this.switchToSignUp}>SignUp</Text>
                             </View>
                         </Form>
                     </View>

@@ -1,13 +1,14 @@
-import React from 'react';
+import React,{ Component} from 'react';
 import { StyleSheet, View, TextInput, ScrollView, Alert } from 'react-native';
 import { Form, Item, Input, Body, Text, CheckBox, Button } from 'native-base';
-
-
 import DatePicker from 'react-native-datepicker'
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Actions } from 'react-native-router-flux';
-import { Component } from 'react';
+import { Actions} from 'react-native-router-flux';
+import * as SQLite from 'expo-sqlite';
+const db = SQLite.openDatabase("Test.db");
+
+
 
 
 
@@ -23,6 +24,7 @@ var radio_props = [
 class Form2 extends Component {
   constructor() {
     super();
+     
     this.state = {
       site_code: "",
       site_name: "",
@@ -34,9 +36,41 @@ class Form2 extends Component {
       mesh: "SelectMeshSize"
 
     }
-  };
+    
 
-
+    
+    };
+    createdb = () =>
+    {
+      db.transaction(tx => {
+        tx.executeSql(
+          "create table if not exists items (id integer primary key not null, site_code text, site_name text, agency text, coordinates text);"
+        );
+      });
+    }
+    add = (text) => {
+      // is text empty?
+      if (text === null || text === "") {
+        return false;
+      }
+  
+      db.transaction(
+        tx => {
+          tx.executeSql("insert into items site_code", [text]);
+          tx.executeSql("select * from items", [], (_, { rows }) =>
+            console.log(JSON.stringify(rows))
+            
+            
+            
+            
+          );
+        },
+        null,
+        
+      );
+      
+    }
+   
 
 
   render() {
@@ -106,6 +140,7 @@ class Form2 extends Component {
                   }
                 }}
                 onDateChange={samplingDate => this.setState({ samplingDate })}
+                
                 value={this.state.samplingDate} />
               {!!this.state.nameError && (
                 <Text style={{ color: "red" }}>{this.state.nameError}</Text>
@@ -378,13 +413,20 @@ class Form2 extends Component {
 
             } else {
               this.setState(() => ({ nameError: null }));
+              this.createdb()
+              this.add(this.state.site_code)
+              
+              
               Actions.replace('formo2')
+              
+              
             }
           }}>
             <Text style={styles.btnText}>Next</Text>
           </Button>
         </View>
-
+        
+          
       </ScrollView >
     );
   }

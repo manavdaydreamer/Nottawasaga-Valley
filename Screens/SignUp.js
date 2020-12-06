@@ -9,9 +9,7 @@ import {Actions} from 'react-native-router-flux';
 
 
 import image from './Images/1.png'
-const switchToForm = () => {
-    Actions.replace('formo')
-  };
+
 // const [state , setState]=React.useState({
     
 // })
@@ -53,6 +51,9 @@ export default class SignUp extends Component {
                             <Item style={styles.formItems}>
                                 <Input secureTextEntry placeholder="Password" style={styles.Input} />
                             </Item>
+                            <Item style={styles.formItems}>
+                                <Input secureTextEntry placeholder=" Confirm Password" style={styles.Input} />
+                            </Item>
 
                             {/* <View style={styles.loginAs}>
                                 <Text style={styles.loginText}>Login as</Text>
@@ -66,14 +67,11 @@ export default class SignUp extends Component {
                                 </Body>
                             </View> */}
                             <View style={styles.Button}>
-                                <Button block style={styles.mainBtn} onPress={switchToForm}>
-                                    <Text style={styles.btnText}>Sign In</Text>  
+                                <Button block style={styles.mainBtn} >
+                                    <Text style={styles.btnText}>Sign Up</Text>  
                                 </Button>
                             </View>
-                            <View style={styles.formI}>
-                                <Text style={styles.forgotPass}>Forgot Password ?</Text>
-                                <Text style={styles.signup}>SignUp</Text>
-                            </View>
+                            
                         </Form>
                     </View>
                 </View>

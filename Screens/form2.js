@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, ScrollView } from 'react-native';
 import { Form, Item, Body, Text, CheckBox, } from 'native-base';
-
+import { Component } from 'react';
 import { Input, Block,Button, } from 'galio-framework';
 
 
@@ -25,7 +25,17 @@ const switchToForm3 = () => {
 
 
 
-const LotsOfStyles = () => {
+ class Form1 extends Component {
+    constructor() {
+      super();
+      
+      this.state = {
+       
+        
+  
+      }
+      
+      }render() {
     return (
          
         <ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
@@ -311,7 +321,7 @@ const LotsOfStyles = () => {
     );
 };
 
-
+  }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -441,5 +451,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LotsOfStyles;
-
+export default Form1;

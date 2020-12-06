@@ -2,7 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 
 import { StyleSheet, Text, View } from 'react-native';
-import { Router, Scene } from 'react-native-router-flux'
+import { Router, Scene } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
@@ -25,6 +27,8 @@ import form5 from './Screens/CollectionArea3'
 import form6 from './Screens/macro'
 import signUp from './Screens/SignUp'
 import { Component } from 'react/cjs/react.production.min';
+import { NavBar } from 'galio-framework';
+
 
 
 
@@ -50,47 +54,30 @@ export default class App extends Component {
   }
 
   onAuthStateChanged = (user) => {
-    this.setState({isAuthenticationReady: true});
-    this.setState({isAuthenticated: !!user});
+    this.setState({ isAuthenticationReady: true });
+    this.setState({ isAuthenticated: !!user });
   }
 
   render() {
-  return (
-    <Router>
-      <Scene key="root">
-        <Scene key="splash" component={Splash} initial={true} hideNavBar={true}></Scene>
-        <Scene key="autho" component={Auth} hideNavBar={true}  ></Scene>
-        <Scene key="formo" component={form} hideNavBar={true}  ></Scene>
-        <Scene key="formo2" component={form2} hideNavBar={true}></Scene>
-        <Scene key="SignUp" component={signUp} hideNavBar={true}></Scene>
-        <Scene
-          key="tabbar"
-          tabs={true}
-          tabBarStyle={{ backgroundColor: '#FFFFFF' }}
-        >
-          <Scene key="SAMPLE#1" title="SAMPLE#1" icon={TabIcon}>
-            <Scene key="formo3" component={form3} hideNavBar={true} />
+    return (
+      <Router>
+        <Scene key="root">
+          <Scene key="splash" component={Splash} initial={true} hideNavBar={true}></Scene>
+          <Scene key="autho" component={Auth} hideNavBar={true}  ></Scene>
+          <Scene key="formo" component={form} back={true} onBack={() => { Actions.replace("autho") }}
+            backButtonTintColor={"#4A934D"} title={"Nottawasaga Valley"} titleStyle={{ color: "#1C3962", fontSize: 20, }} ></Scene>
+          <Scene key="formo2" component={form2} back={true} onBack={() => { Actions.replace("formo") }} backButtonTintColor={"#4A934D"}title={"Nottawasaga Valley"} titleStyle={{ color: "#1C3962", fontSize: 20, }} ></Scene>
+          <Scene key="SignUp" component={signUp} back={true} onBack={() => { Actions.replace("autho") }}  backButtonTintColor={"#4A934D"}title={"Nottawasaga Valley"} titleStyle={{ color: "#1C3962", fontSize: 20, }}> </Scene>
+          <Scene key="formo3" component={form3} back={true} backButtonTintColor={"#4A934D"} onBack={() => { Actions.replace("formo2") }} title={"Nottawasaga Valley"} titleStyle={{ color: "#1C3962", fontSize: 20, }} />
 
 
-          </Scene>
-          <Scene key="SAMPLE#2" title="SAMPLE#2" icon={TabIcon}>
-            <Scene key="formo4" component={form4} hideNavBar={true} />
 
 
-          </Scene>
-          <Scene key="SAMPLE#3" title="SAMPLE#3" icon={TabIcon}>
-            <Scene key="formo5" component={form5} hideNavBar={true} />
-          </Scene>
         </Scene>
 
-        <Scene key="formo6" component={form6} hideNavBar={true}></Scene>
-
-
-      </Scene>
-
-    </Router>
-  );
-}
+      </Router>
+    );
+  }
 }
 
 
