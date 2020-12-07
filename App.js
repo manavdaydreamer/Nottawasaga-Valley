@@ -22,12 +22,9 @@ import Auth from './Screens/Auth'
 import form from './Screens/form'
 import form2 from './Screens/form2'
 import form3 from './Screens/CollectionArea'
-import form4 from './Screens/CollectionArea2'
-import form5 from './Screens/CollectionArea3'
-import form6 from './Screens/macro'
 import signUp from './Screens/SignUp'
-import { Component } from 'react/cjs/react.production.min';
-import { NavBar } from 'galio-framework';
+import { Component } from 'react';
+
 
 
 

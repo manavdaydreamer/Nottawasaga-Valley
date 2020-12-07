@@ -57,12 +57,12 @@ export default class Auth extends Component {
                         <Text style={[styles.textContainer, styles.signin]}>Sign in</Text>
                         <Form style={styles.mainForm}>
                             <Item style={styles.formItems}>
-                                <Input placeholder="Email" style={styles.Input}
+                                <Input placeholder="Email" style={styles.Input} autoCapitalize='none'
                                     value={this.state.email}
                                     onChangeText={text => this.setState({ email: text })} />
                             </Item>
                             <Item style={styles.formItems}>
-                                <Input secureTextEntry placeholder="Password" style={styles.Input}
+                                <Input secureTextEntry placeholder="Password"  autoCapitalize='none' style={styles.Input}
                                     value={this.state.password}
                                     onChangeText={text => this.setState({ password: text })}
                                 />
@@ -223,4 +223,5 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
+    
 });

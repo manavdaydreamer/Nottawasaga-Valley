@@ -1,12 +1,17 @@
 import React,{ Component} from 'react';
-import { StyleSheet, View, TextInput, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, ScrollView, Alert} from 'react-native';
 import { Form, Item, Input, Body, Text, CheckBox, Button } from 'native-base';
 import DatePicker from 'react-native-datepicker'
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Actions} from 'react-native-router-flux';
 import * as SQLite from 'expo-sqlite';
-const db = SQLite.openDatabase("Test.db");
+
+
+const db = SQLite.openDatabase("db.db");
+
+
+
 
 
 
@@ -22,57 +27,45 @@ var radio_props = [
 
 
 class Form2 extends Component {
-  constructor() {
-    super();
-     
+  siteData;
+  constructor(props) {
+    super(props);
+    
+    db.transaction(tx => {
+      tx.executeSql(
+        "CREATE TABLE IF NOT EXISTS sites_info (id INTEGER PRIMARY KEY AUTOINCREMENT, site_code VARCHAR(20), site_name VARCHAR(20), agency VARCHAR(20), samplingDate DATE, coordinates VARCHAR(20), elevation VARCHAR(20))",[]
+      );
+    });
     this.state = {
       site_code: "",
       site_name: "",
       agency: "",
       coordinates: "",
       samplingDate: "",
+      elevation:"",
       gear: "selectgear",
       CollectionM: "SelectCollectionMethod",
       mesh: "SelectMeshSize"
 
     }
-    
-
-    
-    };
-    createdb = () =>
-    {
-      db.transaction(tx => {
-        tx.executeSql(
-          "create table if not exists items (id integer primary key not null, site_code text, site_name text, agency text, coordinates text);"
-        );
-      });
-    }
-    add = (text) => {
-      // is text empty?
-      if (text === null || text === "") {
+    addSite =(site_code,site_name,agency,samplingDate,coordinates,elevation) =>{
+      if (site_code === "" ||site_name === "" || agency ==="" || samplingDate ==="" || coordinates ==="" || elevation === ""){
+        console.log("No values inserted")
         return false;
       }
-  
-      db.transaction(
-        tx => {
-          tx.executeSql("insert into items site_code", [text]);
-          tx.executeSql("select * from items", [], (_, { rows }) =>
-            console.log(JSON.stringify(rows))
-            
-            
-            
-            
-          );
-        },
-        null,
-        
-      );
-      
+      db.transaction(tx =>{
+        tx.executeSql(
+          'INSERT INTO sites_info (site_code, site_name, agency ,samplingDate,coordinates,elevation) VALUES (?,?,?,?,?,?)',[this.state.site_code,this.state.site_name,this.state.agency,this.state.samplingDate,this.state.coordinates,this.state.elevation]);
+        tx.executeSql("select * from sites_info", [], (_, { rows }) =>
+          console.log(JSON.stringify(rows)));
+          
+      });
+
+
     }
-   
 
-
+    };
+ 
   render() {
 
     return (
@@ -162,7 +155,8 @@ class Form2 extends Component {
           <Form style={styles.mainForm}>
             <View style={styles.loginAs}>
               <Text style={styles.loginText}>Elevation(m): </Text>
-              <TextInput placeholder="Elevation" style={styles.Input} keyboardType="numeric" />
+              <TextInput placeholder="Elevation" style={styles.Input} keyboardType="numeric" 
+              value={this.state.elevation} onChangeText={elevation => this.setState({ elevation })}/>
 
             </View>
             <View style={styles.loginAs}>
@@ -413,10 +407,7 @@ class Form2 extends Component {
 
             } else {
               this.setState(() => ({ nameError: null }));
-              this.createdb()
-              this.add(this.state.site_code)
-              
-              
+              addSite();
               Actions.replace('formo2')
               
               
